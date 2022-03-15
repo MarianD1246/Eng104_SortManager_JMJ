@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JMJ_SortManager", "JMJ_SortManager\JMJ_SortManager.csproj", "{356C321D-D7AD-4B5C-949D-DB3E16F02F25}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{356C321D-D7AD-4B5C-949D-DB3E16F02F25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{356C321D-D7AD-4B5C-949D-DB3E16F02F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{356C321D-D7AD-4B5C-949D-DB3E16F02F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{356C321D-D7AD-4B5C-949D-DB3E16F02F25}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {28527F33-50C0-42D2-BAAC-1C574EBB7754}
+	EndGlobalSection
+EndGlobal
