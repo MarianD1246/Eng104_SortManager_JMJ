@@ -21,3 +21,4 @@ The sorting algorithms uses should include:
 * MergeSort
 * .NET Library Sort Methods
 
+The system should make use of the MVC (Model View Controller) pattern to seperate the IO (View) from the controller and model with the Factory Method pattern used to generate the requested model classes.
