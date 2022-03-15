@@ -14,6 +14,8 @@ public class BubbleSort
     }
     public static int[] BubbleArraySort(int[] array)
     {
+        if (array == null || array.Length == 0)
+            return array;
         bool isSorted = false;
         while (!isSorted)
         {

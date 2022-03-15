@@ -7,88 +7,115 @@ namespace SortManager;
 
 public class Program
 {
-    public static void Main(String[] args)
-    {
-        Console.WriteLine("How many numbers would you like in your array?");
+//    public static void Main(String[] args)
+//    {
+//        Console.WriteLine("How many numbers would you like in your array?");
 
-        bool getNumberOfArray = false;
-        int lengthOfArray = 0;
-        while (!getNumberOfArray)
-        {
-            string sizeOfArray = Console.ReadLine();
-            getNumberOfArray = int.TryParse(sizeOfArray, out lengthOfArray);
-            if (!getNumberOfArray)
-                Console.WriteLine("Please enter a number for the array length.");
-        }
+//        bool getNumberOfArray = false;
+//        int lengthOfArray = 0;
+//        while (!getNumberOfArray)
+//        {
+//            string sizeOfArray = Console.ReadLine();
+//            getNumberOfArray = int.TryParse(sizeOfArray, out lengthOfArray);
+//            if (!getNumberOfArray)
+//                Console.WriteLine("Please enter a number for the array length.");
+//        }
 
-        int[] arr = new int[lengthOfArray];
-        Random rand = new Random();
-        for (int i = 0; i < arr.Length; i++)
-        {
-            arr[i] = rand.Next(0, 101);
-        }
-        StringBuilder generatedArray = new();
-        foreach (int i in arr)
-        {
-            generatedArray.Append($"[{i}], ");
-        }
-        Console.WriteLine(generatedArray.ToString().Trim(' ', ','));
-        generatedArray.Clear();
-        Console.WriteLine("Choose a Sort Method: \nType A for Merge Sort\nType B for Bubble Sort\nType C for .Net Sort");
+//        int[] arr = new int[lengthOfArray];
+//        Random rand = new Random();
+//        for (int i = 0; i < arr.Length; i++)
+//        {
+//            arr[i] = rand.Next(0, 100001);
+//        }
+//        StringBuilder generatedArray = new();
+//        foreach (int i in arr)
+//        {
+//            generatedArray.Append($"[{i}], ");
+//        }
+//        Console.WriteLine(generatedArray.ToString().Trim(' ', ','));
+//        generatedArray.Clear();
+//        Console.WriteLine("Choose a Sort Method: \nType A for Merge Sort\nType B for Bubble Sort\nType C for .Net Sort\nType D for Premium ULTRA PLUS MergeSort");
 
-        ConsoleKeyInfo chosenSort;
-        Stopwatch methodTimer = new Stopwatch();
-        do
-        {
-            chosenSort = Console.ReadKey();
-            Console.WriteLine(" ");
-            switch (chosenSort.KeyChar)
-            {
-                case 'a':
-                case 'A':
-                    Console.WriteLine("You have chosen Merge Sort");
-                    methodTimer.Start();
-                    arr = MergeSort.MergeArraySort(arr);
-                    methodTimer.Stop();
-                    foreach (int i in arr)
-                    {
-                        generatedArray.Append($"[{i}], ");
-                    }
-                    Console.WriteLine(generatedArray.ToString().Trim(' ', ','));
-                    Console.WriteLine($"Time Taken for MergeSort: {methodTimer.Elapsed}");
-                    break;
-                case 'b':
-                case 'B':
-                    Console.WriteLine("You have chosen a Bubble Sort");
-                    methodTimer.Start();
-                    int[] sorted = BubbleSort.BubbleArraySort(arr);
-                    methodTimer.Stop();
-                    foreach (int i in arr)
-                    {
-                        generatedArray.Append($"[{i}], ");
-                    }
-                    Console.WriteLine(generatedArray.ToString().Trim(' ', ','));
-                    Console.WriteLine($"Time Taken for BubbleSort: {methodTimer.Elapsed}");
-                    break;
-                case 'c':
-                case 'C':
-                    Console.WriteLine("You have chosen a .Net Sort");
-                    methodTimer.Start();
-                    Array.Sort(arr);
-                    methodTimer.Stop();
-                    foreach (int i in arr)
-                    {
-                        generatedArray.Append($"[{i}], ");
-                    }
-                    Console.WriteLine(generatedArray.ToString().Trim(' ', ','));
-                    Console.WriteLine($"Time Taken for .Net Sort: {methodTimer.Elapsed}");
-                    break;
-                default:
-                    Console.WriteLine("Invalid input.");
-                    break;
-            }
+//        ConsoleKeyInfo chosenSort;
+//        Stopwatch methodTimer = new Stopwatch();
+//        do
+//        {
+//            chosenSort = Console.ReadKey();
+//            Console.WriteLine(" ");
+//            switch (chosenSort.KeyChar)
+//            {
+//                case 'a':
+//                case 'A':
+//                    Console.WriteLine("You have chosen Merge Sort");
+//                    methodTimer.Start();
+//                    arr = merg(arr);
+//                    methodTimer.Stop();
+//                    int[] sortedMergeArr = MergeSort(arr);
+//                    foreach (int i in arr)
+//                    {
+//                        generatedArray.Append($"[{i}], ");
+//                    }
+//                    Console.WriteLine(generatedArray.ToString().Trim(' ', ','));
+//                    Console.WriteLine($"Time Taken for MergeSort: {methodTimer.Elapsed.ToString(@"mm\:ss\:ffffff")}");
+//                    break;
+//                case 'b':
+//                case 'B':
+//                    Console.WriteLine("You have chosen a Bubble Sort");
+//                    methodTimer.Start();
+//                    int[] sorted = BubbleSort.BubbleArraySort(arr);
+//                    methodTimer.Stop();
+//                    foreach (int i in arr)
+//                    {
+//                        generatedArray.Append($"[{i}], ");
+//                    }
+//                    Console.WriteLine(generatedArray.ToString().Trim(' ', ','));
+//                    Console.WriteLine($"Time Taken for BubbleSort: {methodTimer.Elapsed.ToString(@"mm\:ss\:ffffff")}");
+//                    break;
+//                case 'c':
+//                case 'C':
+//                    Console.WriteLine("You have chosen a .Net Sort");
+//                    methodTimer.Start();
+//                    Array.Sort(arr);
+//                    methodTimer.Stop();
+//                    foreach (int i in arr)
+//                    {
+//                        generatedArray.Append($"[{i}], ");
+//                    }
+//                    Console.WriteLine(generatedArray.ToString().Trim(' ', ','));
+//                    Console.WriteLine($"Time Taken for .Net Sort: {methodTimer.Elapsed.ToString(@"mm\:ss\:ffffff")}");
+//                    break;
+//                case 'd':
+//                case 'D':
+//                    Console.WriteLine("You have chosen a Premium ULTRA PLUS MergeSort");
+//                    methodTimer.Start();
+//                    arr = MergeSort.MergeArraySortOld(arr);
+//                    methodTimer.Stop();
+//                    foreach (int i in arr)
+//                    {
+//                        generatedArray.Append($"[{i}], ");
+//                    }
+//                    Console.WriteLine(generatedArray.ToString().Trim(' ', ','));
+//                    Console.WriteLine($"Time Taken for Premium ULTRA PLUS MergeSort: {methodTimer.Elapsed.ToString(@"mm\:ss\:ffffff")}");
+//                    break;
 
-        } while (chosenSort.KeyChar != 'a' && chosenSort.KeyChar != 'A' && chosenSort.KeyChar != 'b' && chosenSort.KeyChar != 'B' && chosenSort.KeyChar != 'c' && chosenSort.KeyChar != 'C');
+//                default:
+//                    Console.WriteLine("Invalid input.");
+//                    break;
+//            }
 
-    }
+//        } while (chosenSort.KeyChar != 'a' && chosenSort.KeyChar != 'A' && chosenSort.KeyChar != 'b' && chosenSort.KeyChar != 'B' && chosenSort.KeyChar != 'c' && chosenSort.KeyChar != 'C' && chosenSort.KeyChar != 'd' && chosenSort.KeyChar != 'D');
 }
+
+
+//    public int[] MergeSort (int[] arr)
+//    {
+
+//        methodTimer.Start();
+//        arr = MergeSort.MergeArraySort(arr);
+//        methodTimer.Stop();
+//        return arr;
+//    }
+//}
+
+//Main(controller) calls upon getInput(view) which returns A, B, C which calls the correct sort
+// merge, bubble or .net(different models) 
