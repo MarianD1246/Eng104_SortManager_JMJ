@@ -55,7 +55,7 @@ public class Program
                         generatedArray.Append($"[{i}], ");
                     }
                     Console.WriteLine(generatedArray.ToString().Trim(' ', ','));
-                    Console.WriteLine($"Time Taken for MergeSort: {methodTimer.Elapsed}");
+                    Console.WriteLine($"Time Taken for MergeSort: {methodTimer.Elapsed.ToString(@"mm\:ss\:ffffff")}");
                     break;
                 case 'b':
                 case 'B':
@@ -68,7 +68,7 @@ public class Program
                         generatedArray.Append($"[{i}], ");
                     }
                     Console.WriteLine(generatedArray.ToString().Trim(' ', ','));
-                    Console.WriteLine($"Time Taken for BubbleSort: {methodTimer.Elapsed}");
+                    Console.WriteLine($"Time Taken for BubbleSort: {methodTimer.Elapsed.ToString(@"mm\:ss\:ffffff")}");
                     break;
                 case 'c':
                 case 'C':
@@ -81,7 +81,7 @@ public class Program
                         generatedArray.Append($"[{i}], ");
                     }
                     Console.WriteLine(generatedArray.ToString().Trim(' ', ','));
-                    Console.WriteLine($"Time Taken for .Net Sort: {methodTimer.Elapsed}");
+                    Console.WriteLine($"Time Taken for .Net Sort: {methodTimer.Elapsed.ToString(@"mm\:ss\:ffffff")}");
                     break;
                 default:
                     Console.WriteLine("Invalid input.");
