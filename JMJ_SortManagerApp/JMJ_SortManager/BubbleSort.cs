@@ -10,13 +10,12 @@ public class BubbleSort : ISortable
 {
     public int[] Sort(int[] array)
     {
-        if (array == null || array.Length == 0)
-            return array;
+        if (array == null || array.Length == 0) return array;
+
         bool isSorted = false;
-        while (!isSorted)
+        while (isSorted == false)
         {
             bool isChanged = false;
-            int bubble = array[0];
             for (int i = 1; i < array.Length; i++)
             {
                 if (array[i] < array[i - 1])
@@ -28,7 +27,7 @@ public class BubbleSort : ISortable
                     isChanged = true;
                 }
             }
-            if (!isChanged)
+            if (isChanged == false)
                 isSorted = true;
         }
         return array;
