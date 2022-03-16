@@ -12,15 +12,12 @@ public class SortController
             case 'a':
             case 'A':
                 return new MergeFactory().GetInstance();
-                break;
             case 'b':
             case 'B':
                 return new BubbleFactory().GetInstance();
-                break;
             case 'c':
             case 'C':
                 return new NetFactory().GetInstance();
-                break;
             // case 'd':
             // case 'D':
             //     unsortedArray = MergeSort.MergeArraySortOld(unsortedArray);
