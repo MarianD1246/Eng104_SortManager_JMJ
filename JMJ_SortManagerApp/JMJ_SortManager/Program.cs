@@ -14,11 +14,11 @@ public class Program
         char getInput;
         Timer timer = new();
         int[] unsortedArray = GetInput(out getInput);
+        ISortable sortMethod = SortController.SelectSort(getInput);
         timer.Start();
-        int[] arr = Factory.SelectSort(unsortedArray, getInput);
+        int[] arr = sortMethod.Sort(unsortedArray);
         string timeElapsed = timer.Stop();
         PrintArray(arr, timeElapsed);
-
     }
     
     public static int[] GetInput(out char input)
@@ -27,19 +27,19 @@ public class Program
         int lengthOfArray = 0;
         string sizeOfArray = Console.ReadLine();
        
-        while (int.TryParse(sizeOfArray, out lengthOfArray) == false)
+        while (int.TryParse(sizeOfArray, out lengthOfArray) == false || lengthOfArray < 0)
         {
-            Console.WriteLine("Please enter a number for the array length.");
+            Console.WriteLine("Invalid Input.\nPlease enter a number for the array length.");
             sizeOfArray = Console.ReadLine();
         }
         int[] arr = CreateArray(lengthOfArray);
         PrintArray(arr,"");
 
-        Console.WriteLine("Choose a Sort Method: \nType A for Merge Sort\nType B for Bubble Sort\nType C for .Net Sort\nType D for Premium ULTRA PLUS MergeSort");
+        Console.WriteLine("Choose a Sort Method: \nType A for Merge Sort\nType B for Bubble Sort\nType C for .Net Sort");// \nType D for Premium ULTRA PLUS MergeSort
         ConsoleKeyInfo userInput = Console.ReadKey();
-        while (userInput.KeyChar != 'a' && userInput.KeyChar != 'A' && userInput.KeyChar != 'b' && userInput.KeyChar != 'B' && userInput.KeyChar != 'c' && userInput.KeyChar != 'C' && userInput.KeyChar != 'd' && userInput.KeyChar != 'D')
+        while (userInput.KeyChar != 'a' && userInput.KeyChar != 'A' && userInput.KeyChar != 'b' && userInput.KeyChar != 'B' && userInput.KeyChar != 'c' && userInput.KeyChar != 'C') //&& userInput.KeyChar != 'd' && userInput.KeyChar != 'D'
         {
-            Console.WriteLine("Valid inputs are A(Merge Sort) or B(Bubble Sort) or C(.Net Sort) or D(Old MergeSort)");
+            Console.WriteLine("Valid inputs are A(Merge Sort) or B(Bubble Sort) or C(.Net Sort) "); //or D(Old MergeSort)
             userInput = Console.ReadKey(); 
         }
         
