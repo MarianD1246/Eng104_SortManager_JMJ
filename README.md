@@ -7,7 +7,7 @@ The user is prompted to input the size of an array, which gets created and fille
 - [Merge sort](https://en.wikipedia.org/wiki/Merge_sort)
 - [Bubble sort](https://en.wikipedia.org/wiki/Bubble_sort)
 - [Visual Studio's own Sort implementation](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.sort?view=net-6.0)
-- Proprietary James' MergeSort™
+- [Proprietary James' MergeSort™](https://github.com/Jdickson96)
 
 The sorted array is then printed back to the user along with the time taken to complete the sort.
 
