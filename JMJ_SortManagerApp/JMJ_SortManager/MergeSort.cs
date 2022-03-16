@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SortManager
 {
-    public class MergeSort
+    public class MergeSort : ISortable
     {
-        public static int[] MergeArraySort(int[] array)
+        public int[] Sort(int[] array)
         {
             int[] left;
             int[] right;
@@ -41,9 +41,9 @@ namespace SortManager
                 x++;
             }
             //Recursively sort the left array
-            left = MergeArraySort(left);
+            left = Sort(left);
             //Recursively sort the right array
-            right = MergeArraySort(right);
+            right = Sort(right);
             //Merge our two sorted arrays
             result = merge(left, right);
             return result;
@@ -95,41 +95,5 @@ namespace SortManager
             return result;
         }
 
-        public static int[] MergeArraySortOld(int[] arr, int compareNo = 1)
-        {
-            int noOfMergeGroups = arr.Length / compareNo;
-            int leftOverInts = arr.Length % compareNo;
-            int[] newOrder = new int[arr.Length];
-            int lowLocation;
-
-            if (arr == null || arr.Length == 0 || arr.Length == 1)
-                return arr;
-
-
-            for (int x = 0; x < noOfMergeGroups; x++)   //Runs code on all standard subgroups of array
-            {
-                for (int i = 0; i < compareNo; i++)  //This orders a piece of array from min to max
-                {
-                    newOrder[i + (x * compareNo)] = arr.Skip(x * compareNo).Take(compareNo).Min();
-                    lowLocation = Array.FindIndex(arr, item => item == arr.Skip(x * compareNo).Take(compareNo).Min());
-                    arr[lowLocation] = int.MaxValue;
-                }
-            }
-            if (leftOverInts > 0)    //This orders the numbers in the remainder
-            {
-                for (int i = 0; i < leftOverInts; i++)  //This orders a piece of array from min to max
-                {
-                    newOrder[i + (arr.Length - leftOverInts)] = arr.Skip(arr.Length - leftOverInts).Take(leftOverInts).Min();
-                    lowLocation = Array.FindIndex(arr, item => item == arr.Skip(arr.Length - leftOverInts).Take(leftOverInts).Min());
-                    arr[lowLocation] = int.MaxValue;
-                }
-            }
-
-            if (compareNo >= arr.Length)    //If all the arrays have been merged return the array
-                return newOrder;
-
-            else
-                return MergeArraySortOld(newOrder, compareNo * 2); //If the arrays aren't fully merged, merge them
-        }
-    }
+    }       
 }

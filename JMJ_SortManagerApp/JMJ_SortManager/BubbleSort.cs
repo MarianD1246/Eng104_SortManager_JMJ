@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace SortManager;
 
-public class BubbleSort
+public class BubbleSort : ISortable
 {
-    public BubbleSort(int[] arr)
-    {
-        int[] array = arr;
-    }
-    public static int[] BubbleArraySort(int[] array)
+    public int[] Sort(int[] array)
     {
         if (array == null || array.Length == 0)
             return array;
