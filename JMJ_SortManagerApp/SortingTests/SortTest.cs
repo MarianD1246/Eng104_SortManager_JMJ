@@ -13,7 +13,7 @@ public class BubbleSortTest
 
     public void GivenEmptyArray_Bubble_ReturnEmptyArray(int[] input, int[] expected)
     {
-        int[] result = BubbleSort.BubbleArraySort(input);
+        int[] result = new BubbleSort().Sort(input);
         Assert.That(expected, Is.EqualTo(result));
     }
 
@@ -22,7 +22,7 @@ public class BubbleSortTest
 
     public void GivenSingleDigitArray_Bubble_ReturnSingleDigitArray(int[] input, int[] expected)
     {
-        int[] result = BubbleSort.BubbleArraySort(input);
+        int[] result = new BubbleSort().Sort(input);
         Assert.That(expected, Is.EqualTo(result));
     }
 
@@ -31,7 +31,7 @@ public class BubbleSortTest
 
     public void GivenTenIntArray_Bubble_ReturnCorrectOrderArray(int[] input, int[] expected)
     {
-        int[] result = BubbleSort.BubbleArraySort(input);
+        int[] result = new BubbleSort().Sort(input);
         Assert.That(expected, Is.EqualTo(result));
     }
 
@@ -46,7 +46,7 @@ public class BubbleSortTest
         {
             input[i] = rand.Next(0, 1001);
         }
-        int[] result = BubbleSort.BubbleArraySort(input);
+        int[] result = new BubbleSort().Sort(input);
         Array.Sort(input);
         Assert.That(result, Is.EqualTo(input));
     }
@@ -58,7 +58,7 @@ public class MergeSortTest
 
     public void GivenEmptyArray_Merge_ReturnEmptyArray(int[] input, int[] expected)
     {
-        int[] result = MergeSort.MergeArraySort(input);
+        int[] result = new MergeSort().Sort(input);
         Assert.That(expected, Is.EqualTo(result));
     }
 
@@ -67,7 +67,7 @@ public class MergeSortTest
 
     public void GivenSingleDigitArray_Merge_ReturnSingleDigitArray(int[] input, int[] expected)
     {
-        int[] result = MergeSort.MergeArraySort(input);
+        int[] result = new MergeSort().Sort(input);
         Assert.That(expected, Is.EqualTo(result));
     }
 
@@ -76,11 +76,12 @@ public class MergeSortTest
 
     public void GivenTenIntArray_Merge_ReturnCorrectOrderArray(int[] input, int[] expected)
     {
-        int[] result = MergeSort.MergeArraySort(input);
+        int[] result = new MergeSort().Sort(input);
         Assert.That(expected, Is.EqualTo(result));
     }
 
 }
+/*
 public class OldMergeSortTest
 {
     [Category("Empty Array Test")]
@@ -88,7 +89,7 @@ public class OldMergeSortTest
 
     public void GivenEmptyArray_OldMerge_ReturnEmptyArray(int[] input, int[] expected)
     {
-        int[] result = MergeSort.MergeArraySortOld(input);
+        int[] result = new RecursiveSort().Sort(input);
         Assert.That(expected, Is.EqualTo(result));
     }
 
@@ -97,7 +98,7 @@ public class OldMergeSortTest
 
     public void GivenSingleDigitArray_OldMerge_ReturnSingleDigitArray(int[] input, int[] expected)
     {
-        int[] result = MergeSort.MergeArraySortOld(input);
+        int[] result = new RecursiveSort().Sort(input);
         Assert.That(expected, Is.EqualTo(result));
     }
 
@@ -106,8 +107,8 @@ public class OldMergeSortTest
 
     public void GivenTenIntArray_OldMerge_ReturnCorrectOrderArray(int[] input, int[] expected)
     {
-        int[] result = MergeSort.MergeArraySortOld(input);
+        int[] result = new RecursiveSort().Sort(input);
         Assert.That(expected, Is.EqualTo(result));
     }
-
 }
+    */
