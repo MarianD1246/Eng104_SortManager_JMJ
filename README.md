@@ -27,6 +27,7 @@ A step-by-step analysis of the user journey
    ![step2](img/step2.png)
 
 3. The user is given another prompt which allows them to select which sorting algorithm they wish to use to sort the array.
+
    ![step3](img/step3.png)
 
 4. After the sorting algorithm has completed sorting the array, it would print back the sorted array along with the time elapsed from the beginning of the sort to the end.
