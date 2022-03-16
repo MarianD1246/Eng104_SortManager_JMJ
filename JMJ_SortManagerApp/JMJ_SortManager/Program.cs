@@ -3,144 +3,76 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Diagnostics;
 
 namespace SortManager;
 
 public class Program
 {
-    //------------------------CONTROLLER---------------------
+    //------------------------VIEW---------------------
     public static void Main(String[] args)
     {
         char getInput;
+        Timer timer = new();
         int[] unsortedArray = GetInput(out getInput);
-        int[] sortedArray;
-        string timer;
-        //switch case to determine the correct method
-        Stopwatch methodTimer = new();
-        switch (getInput){
-            case 'a':
-            case 'A':
-                methodTimer.Start();
-                sortedArray = MergeSortMethod(unsortedArray);
-                methodTimer.Stop();
-                timer = methodTimer.Elapsed.ToString(@"mm\:ss\:ffffff");
-                PrintArray(sortedArray, getInput, timer);
-                break;
+        timer.Start();
+        int[] arr = Factory.SelectSort(unsortedArray, getInput);
+        string timeElapsed = timer.Stop();
+        PrintArray(arr, timeElapsed);
 
-            case 'b':
-            case 'B':
-                methodTimer.Start();
-                sortedArray = BubbleSortMethod(unsortedArray);
-                methodTimer.Stop();
-                timer = methodTimer.Elapsed.ToString(@"mm\:ss\:ffffff");
-                PrintArray(sortedArray, getInput, timer);
-                break;
-            case 'c':
-            case 'C':
-                methodTimer.Start();
-                sortedArray = NetSortMethod(unsortedArray);
-                methodTimer.Stop();
-                timer = methodTimer.Elapsed.ToString(@"mm\:ss\:ffffff");
-                PrintArray(sortedArray, getInput, timer);
-                break;
-            case 'd':
-            case 'D':
-                methodTimer.Start();
-                sortedArray = MergeSortOldMethod(unsortedArray);
-                methodTimer.Stop();
-                timer = methodTimer.Elapsed.ToString(@"mm\:ss\:ffffff");
-                PrintArray(sortedArray, getInput, timer);
-                break;
-        }
     }
-    //method to print array 
-    //stopwatch to be in sort methods
-    //---------------------VIEW-----------------------------
+    
     public static int[] GetInput(out char input)
     {
         Console.WriteLine("How many numbers would you like in your array?");
-        bool getNumberOfArray = false;
         int lengthOfArray = 0;
-        while (!getNumberOfArray)
+        string sizeOfArray = Console.ReadLine();
+       
+        while (int.TryParse(sizeOfArray, out lengthOfArray) == false)
         {
-            
-            string sizeOfArray = Console.ReadLine();
-            getNumberOfArray = int.TryParse(sizeOfArray, out lengthOfArray);
-            if (!getNumberOfArray)
-                Console.WriteLine("Please enter a number for the array length.");
+            Console.WriteLine("Please enter a number for the array length.");
+            sizeOfArray = Console.ReadLine();
         }
+        int[] arr = CreateArray(lengthOfArray);
+        PrintArray(arr,"");
 
-        int[] arr = new int[lengthOfArray];
-        Random rand = new Random();;
-        for (int i = 0; i < arr.Length; i++)
+        Console.WriteLine("Choose a Sort Method: \nType A for Merge Sort\nType B for Bubble Sort\nType C for .Net Sort\nType D for Premium ULTRA PLUS MergeSort");
+        ConsoleKeyInfo userInput = Console.ReadKey();
+        while (userInput.KeyChar != 'a' && userInput.KeyChar != 'A' && userInput.KeyChar != 'b' && userInput.KeyChar != 'B' && userInput.KeyChar != 'c' && userInput.KeyChar != 'C' && userInput.KeyChar != 'd' && userInput.KeyChar != 'D')
         {
-            arr[i] = rand.Next(0, 1001);;
+            Console.WriteLine("Valid inputs are A(Merge Sort) or B(Bubble Sort) or C(.Net Sort) or D(Old MergeSort)");
+            userInput = Console.ReadKey(); 
         }
         
-        Console.WriteLine("Choose a Sort Method: \nType A for Merge Sort\nType B for Bubble Sort\nType C for .Net Sort\nType D for Premium ULTRA PLUS MergeSort");
-        ConsoleKeyInfo userInput;
-        char key = ' ';
-        bool getKey = false;
-        while (!getKey)
-        {
-            userInput = Console.ReadKey();
-            if (userInput.KeyChar == 'a' || userInput.KeyChar == 'A' || userInput.KeyChar == 'b' || userInput.KeyChar == 'B' || userInput.KeyChar == 'c' || userInput.KeyChar == 'C' || userInput.KeyChar == 'd' || userInput.KeyChar == 'D')
-            {
-                getKey = true;
-                key = userInput.KeyChar;
-            }
-            else
-                Console.WriteLine("Valid inputs are A(Merge Sort) or B(Bubble Sort) or C(.Net Sort) or D(old MergeSort)");
-
-        }
-        input = key;
+        input = userInput.KeyChar;
         return arr;
     }
 
-    public static void PrintArray(int[] sortedArray, char whichSortMethod, string timeElapsed)
+    public static int[] CreateArray(int lengthOfArray)
     {
-        StringBuilder sortedOutput = new();
-        Console.WriteLine();
+        int[] arr = new int[lengthOfArray];
+        Random rand = new Random();
+        for (int i = 0; i < arr.Length; i++)
+        {
+            arr[i] = rand.Next(0, 1001);
+        }
+        return arr;
+    }
+
+    public static void PrintArray(int[] sortedArray, string timeElapsed)
+    {
         if (sortedArray.Length <= 20)
         {
+            StringBuilder sortedOutput = new();
             foreach (int i in sortedArray)
-
             {
                 sortedOutput.Append($"[{i}], ");
             }
-            Console.WriteLine(sortedOutput.ToString().Trim(' ', ','));
+            Console.WriteLine($"\n{sortedOutput.ToString().Trim(' ', ',')}");
         }
-        else
-        {
-            Console.WriteLine("Array length is more than 20, so data is not displayed.");
-        }
-        Console.WriteLine($"Time Taken to sort: {timeElapsed}");
-    }
+        else Console.WriteLine("\n Array length is more than 20, so data is not displayed.");
+       
+        if(timeElapsed != "") Console.WriteLine($"Time Taken to sort: {timeElapsed}");
 
-
-    //-----------------------CALLING THE MODELS------------------------
-    public static int[] MergeSortMethod(int[] arr)
-    {
-        int[] sorted = MergeSort.MergeArraySort(arr);
-        return sorted;
-    }
-    public static int[] BubbleSortMethod(int[] arr)
-    {
-        int[] sorted = BubbleSort.BubbleArraySort(arr);
-        return sorted;
-    }
-
-    public static int[] NetSortMethod(int[] arr)
-    {
-        Array.Sort(arr);
-        return arr;
-    }
-    public static int[] MergeSortOldMethod(int[] arr)
-    {
-        int[] sorted = MergeSort.MergeArraySortOld(arr);
-        return sorted;
+        Console.WriteLine();
     }
 }
-//Main(controller) calls upon getInput(view) which returns A, B, C which calls the correct sort
-// merge, bubble or .net(different models) -- factory model 
