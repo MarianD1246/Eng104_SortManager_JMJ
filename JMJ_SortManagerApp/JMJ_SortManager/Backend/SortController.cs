@@ -5,7 +5,7 @@ namespace SortManager;
 
 public class SortController
 {
-    public static ISortable SelectSort( char c)
+    public static ISortable SelectSort(char c)
     {
         switch (c)
         {
