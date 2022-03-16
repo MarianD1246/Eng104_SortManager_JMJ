@@ -27,9 +27,9 @@ public class Program
         int lengthOfArray = 0;
         string sizeOfArray = Console.ReadLine();
        
-        while (int.TryParse(sizeOfArray, out lengthOfArray) == false)
+        while (int.TryParse(sizeOfArray, out lengthOfArray) == false || lengthOfArray < 0)
         {
-            Console.WriteLine("Please enter a number for the array length.");
+            Console.WriteLine("Invalid Input.\nPlease enter a number for the array length.");
             sizeOfArray = Console.ReadLine();
         }
         int[] arr = CreateArray(lengthOfArray);
