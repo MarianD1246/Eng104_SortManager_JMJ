@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JMJ_SortManager", "JMJ_SortManager\JMJ_SortManager.csproj", "{356C321D-D7AD-4B5C-949D-DB3E16F02F25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingTests", "SortingTests\SortingTests.csproj", "{FB3D1D0A-A5B3-4E30-8320-B61F2492222B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemTests", "SortingTests\SystemTests.csproj", "{FB3D1D0A-A5B3-4E30-8320-B61F2492222B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
