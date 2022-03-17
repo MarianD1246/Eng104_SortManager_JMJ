@@ -57,6 +57,22 @@ Bubble sort works by using a nested loop and reiterating through the array whils
 
 The built-in sorting method Array.Sort() uses the Quicksort algorithm.  Quicksort, much like Merge sort, is a divide and conquer algorithm. It works by choosing an element within the array and 'pivots' it and partitions the other elements into two different sub-arrays, depending if they are larger or smaller. 
 
+## Testing
+
+These are our test cases which test our different sorting algorithms along making sure that the correct type is being returned. The tests use unsorted arrays and they make sure that they are returned ordered in ascending order. 
+
+![testing1](img\testing1.png)
+
+
+![testing2](img\testing2.png)
+
+## Debug log
+
+The debug log shows extra information regarding the arrays and the type of sort selected, along with the time of date the the log was entered. With this, the user can compare the difference in time depending on the sort method that they choose. 
+![log](img\log.PNG)
+
+
+
 ## UML diagram
 
 ![uml](img/uml.png)
