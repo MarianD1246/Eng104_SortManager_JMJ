@@ -7,7 +7,7 @@ The user is prompted to input the size of an array, which gets created and fille
 - [Merge sort](https://en.wikipedia.org/wiki/Merge_sort)
 - [Bubble sort](https://en.wikipedia.org/wiki/Bubble_sort)
 - [Visual Studio's own Sort implementation](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.sort?view=net-6.0)
-- Proprietary James' MergeSort™
+- [Proprietary James' MergeSort™](https://github.com/Jdickson96)
 
 The sorted array is then printed back to the user along with the time taken to complete the sort.
 
@@ -15,22 +15,27 @@ The sorted array is then printed back to the user along with the time taken to c
 
 This flow chart shows the user's journey whilst using the application.
 
-![SortManagerDiagram](img\SortManagerDiagram.png)
+![SortManagerDiagram](img/SortManagerDiagram.png)
 
 ## User Journey
 
 A step-by-step analysis of the user journey
 
-1. The user is prompted to enter a number for the size of the array.![step1](img\step1.png)
+1. The user is prompted to enter a number for the size of the array.
+   
+   ![step1](img/step1.png)
 
 2. The array is then shown to the user
-   ![step2](img\step2.png)
+   
+   ![step2](img/step2.png)
 
-3. The user is given another prompt which allows them to select which sorting algorithm they wish to use to sort the array. 
-   ![step3](img\step3.png)
+3. The user is given another prompt which allows them to select which sorting algorithm they wish to use to sort the array.
+
+   ![step3](img/step3.png)
 
 4. After the sorting algorithm has completed sorting the array, it would print back the sorted array along with the time elapsed from the beginning of the sort to the end.
-   ![step4](img\step4.png)
+   
+   ![step4](img/step4.png)
 
    
 
@@ -52,9 +57,25 @@ Bubble sort works by using a nested loop and reiterating through the array whils
 
 The built-in sorting method Array.Sort() uses the Quicksort algorithm.  Quicksort, much like Merge sort, is a divide and conquer algorithm. It works by choosing an element within the array and 'pivots' it and partitions the other elements into two different sub-arrays, depending if they are larger or smaller. 
 
+## Testing
+
+These are our test cases which test our different sorting algorithms along making sure that the correct type is being returned. The tests use unsorted arrays and they make sure that they are returned ordered in ascending order. 
+
+![testing1](img/testing1.png)
+
+
+![testing2](img/testing2.png)
+
+## Debug log
+
+The debug log shows extra information regarding the arrays and the type of sort selected, along with the time of date the the log was entered. With this, the user can compare the difference in time depending on the sort method that they choose. 
+![log](img/log.PNG)
+
+
+
 ## UML diagram
 
-![uml](img\uml.png)
+![uml](img/uml.png)
 
 
 
