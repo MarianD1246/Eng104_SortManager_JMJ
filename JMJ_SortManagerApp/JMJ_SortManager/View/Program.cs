@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace SortManager;
 
@@ -23,6 +24,7 @@ public class Program
         int[] arr = sortMethod.Sort(unsortedArray);
         string timeElapsed = timer.Stop();
         PrintArray(arr, timeElapsed);
+        LogData(selection, unsortedArray, arr, timeElapsed);
     }
     
     public static int[] GetUserInputs(out SelectedSort selection)
@@ -48,7 +50,6 @@ public class Program
         }
         Console.WriteLine();
         
-
     switch (userInput)
     {
         case 'A':
@@ -91,5 +92,53 @@ public class Program
         else Console.WriteLine("\nArray length is more than 20, so data is not displayed.");
        
         if(timeElapsed != "") Console.WriteLine($"Time Taken to sort: {timeElapsed}");
+    }
+
+    public static void Log(string logLine1, string logLine2, string logLine3, string logLine4, TextWriter w)
+    {
+        w.Write("\r\nLog Entry : ");
+        w.WriteLine($"{DateTime.Now.ToLongTimeString()} {DateTime.Now.ToLongDateString()}");
+        w.WriteLine("  :");
+        w.WriteLine($"  : {logLine1}");
+        w.WriteLine( "  : Unsorted Input data:");
+        w.WriteLine($"  : {logLine2}");
+        w.WriteLine( "  : Sorted output data:");
+        w.WriteLine($"  : {logLine3}");
+        w.WriteLine( "  : Time Taken To Sort:");
+        w.WriteLine($"  : {logLine4}");
+        w.WriteLine( "-------------------------------");
+    }
+
+    public static void DumpLog(StreamReader r)
+    {
+        string line;
+        while ((line = r.ReadLine()) != null)
+        {
+            Console.WriteLine(line);
+        }
+    }
+
+    public static void LogData( SelectedSort selection, int[] unsortedArray, int[] arr, string timeElapsed)
+    {
+        StringBuilder sortedOutput = new();
+        StringBuilder unsortedInput = new();
+        foreach (int i in arr)
+        {
+            sortedOutput.Append($"[{i}], ");
+            unsortedInput.Append($"[{i}], ");
+        }
+
+        using (StreamWriter w = File.AppendText("log.txt"))
+        {
+            Log($"Sort Type Selected: {selection}",
+                $"{unsortedInput.ToString().Trim(' ', ',')}",
+                $"{sortedOutput.ToString().Trim(' ', ',')}",
+                $"{timeElapsed}", w);
+        }
+
+        using (StreamReader r = File.OpenText("log.txt"))
+        {
+            DumpLog(r);
+        }
     }
 }
