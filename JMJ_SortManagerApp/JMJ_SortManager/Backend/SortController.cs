@@ -9,13 +9,10 @@ public class SortController
     {
         switch (c)
         {
-            case 'a':
             case 'A':
                 return new MergeFactory().GetInstance();
-            case 'b':
             case 'B':
                 return new BubbleFactory().GetInstance();
-            case 'c':
             case 'C':
                 return new NetFactory().GetInstance();
             // case 'd':
