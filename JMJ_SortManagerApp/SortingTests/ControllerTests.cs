@@ -16,7 +16,7 @@ public class ControllerTests
         ISortable selectedSort = SortController.SelectSort(selected);
         var x = new MergeFactory().GetInstance();
         Assert.That(x, Is.TypeOf(selectedSort.GetType()));
-        
+        Assert.That(x, Is.InstanceOf<ISortable>());
     }
 
     [Category("Testing Controller Return Bubble sort")]
@@ -27,7 +27,7 @@ public class ControllerTests
         ISortable selectedSort = SortController.SelectSort(selected);
         var x = new BubbleFactory().GetInstance();
         Assert.That(x, Is.TypeOf(selectedSort.GetType()));
-
+        Assert.That(x, Is.InstanceOf<ISortable>());
     }
 
     [Category("Testing Controller Return NET sort")]
@@ -38,7 +38,7 @@ public class ControllerTests
         ISortable selectedSort = SortController.SelectSort(selected);
         var x = new NetFactory().GetInstance();
         Assert.That(x, Is.TypeOf(selectedSort.GetType()));
-
+        Assert.That(x, Is.InstanceOf<ISortable>());
     }
 }
 
