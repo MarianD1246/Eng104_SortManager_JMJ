@@ -5,20 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SortManager;
+
+public enum SelectedSort
+{
+    MERGE,
+    BUBBLE,
+    NET
+}
 public class Program
 {
     public static void Main(String[] args)
     {
         Timer timer = new();
-        int[] unsortedArray = GetUserInputs(out char selectedSort);
-        ISortable sortMethod = SortController.SelectSort(selectedSort);
+        int[] unsortedArray = GetUserInputs(out SelectedSort selection);
+        ISortable sortMethod = SortController.SelectSort(selection);
         timer.Start();
         int[] arr = sortMethod.Sort(unsortedArray);
         string timeElapsed = timer.Stop();
         PrintArray(arr, timeElapsed);
     }
     
-    public static int[] GetUserInputs(out char selectedSort)
+    public static int[] GetUserInputs(out SelectedSort selection)
     {
         Console.WriteLine("How many numbers would you like in your array?");
         int lengthOfArray = 0;
@@ -40,8 +47,23 @@ public class Program
             userInput = Char.ToUpper(Console.ReadKey().KeyChar);
         }
         Console.WriteLine();
-        selectedSort = userInput;
-        return arr;
+        
+
+    switch (userInput)
+    {
+        case 'A':
+            selection = SelectedSort.MERGE;
+            return arr;
+        case 'B':
+            selection = SelectedSort.BUBBLE;
+            return arr;
+        case 'C':
+            selection = SelectedSort.NET;
+            return arr;
+        default:
+            selection = SelectedSort.MERGE;
+            return arr;
+        }      
     }
 
     public static int[] CreateArray(int lengthOfArray)

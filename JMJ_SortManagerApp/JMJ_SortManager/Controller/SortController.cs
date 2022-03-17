@@ -5,15 +5,15 @@ namespace SortManager;
 
 public class SortController
 {
-    public static ISortable SelectSort(char c)
+    public static ISortable SelectSort(SelectedSort Selection)
     {
-        switch (c)
+        switch (Selection)
         {
-            case 'A':
+            case SelectedSort.MERGE:
                 return new MergeFactory().GetInstance();
-            case 'B':
+            case SelectedSort.BUBBLE:
                 return new BubbleFactory().GetInstance();
-            case 'C':
+            case SelectedSort.NET:
                 return new NetFactory().GetInstance();
             // case 'd':
             // case 'D':
