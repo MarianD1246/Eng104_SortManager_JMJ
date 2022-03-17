@@ -3,22 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace SortManager;
+
+public enum SelectedSort
+{
+    MERGE,
+    BUBBLE,
+    NET
+}
 public class Program
 {
     public static void Main(String[] args)
     {
         Timer timer = new();
-        int[] unsortedArray = GetUserInputs(out char selectedSort);
-        ISortable sortMethod = SortController.SelectSort(selectedSort);
+        int[] unsortedArray = GetUserInputs(out SelectedSort selection);
+        ISortable sortMethod = SortController.SelectSort(selection);
         timer.Start();
         int[] arr = sortMethod.Sort(unsortedArray);
         string timeElapsed = timer.Stop();
         PrintArray(arr, timeElapsed);
+        LogData(selection, unsortedArray, arr, timeElapsed);
     }
     
-    public static int[] GetUserInputs(out char selectedSort)
+    public static int[] GetUserInputs(out SelectedSort selection)
     {
         Console.WriteLine("How many numbers would you like in your array?");
         int lengthOfArray = 0;
@@ -40,8 +49,22 @@ public class Program
             userInput = Char.ToUpper(Console.ReadKey().KeyChar);
         }
         Console.WriteLine();
-        selectedSort = userInput;
-        return arr;
+        
+    switch (userInput)
+    {
+        case 'A':
+            selection = SelectedSort.MERGE;
+            return arr;
+        case 'B':
+            selection = SelectedSort.BUBBLE;
+            return arr;
+        case 'C':
+            selection = SelectedSort.NET;
+            return arr;
+        default:
+            selection = SelectedSort.MERGE;
+            return arr;
+        }      
     }
 
     public static int[] CreateArray(int lengthOfArray)
@@ -69,5 +92,53 @@ public class Program
         else Console.WriteLine("\nArray length is more than 20, so data is not displayed.");
        
         if(timeElapsed != "") Console.WriteLine($"Time Taken to sort: {timeElapsed}");
+    }
+
+    public static void Log(string logLine1, string logLine2, string logLine3, string logLine4, TextWriter w)
+    {
+        w.Write("\r\nLog Entry : ");
+        w.WriteLine($"{DateTime.Now.ToLongTimeString()} {DateTime.Now.ToLongDateString()}");
+        w.WriteLine("  :");
+        w.WriteLine($"  : {logLine1}");
+        w.WriteLine( "  : Unsorted Input data:");
+        w.WriteLine($"  : {logLine2}");
+        w.WriteLine( "  : Sorted output data:");
+        w.WriteLine($"  : {logLine3}");
+        w.WriteLine( "  : Time Taken To Sort:");
+        w.WriteLine($"  : {logLine4}");
+        w.WriteLine( "-------------------------------");
+    }
+
+    public static void DumpLog(StreamReader r)
+    {
+        string line;
+        while ((line = r.ReadLine()) != null)
+        {
+            Console.WriteLine(line);
+        }
+    }
+
+    public static void LogData( SelectedSort selection, int[] unsortedArray, int[] arr, string timeElapsed)
+    {
+        StringBuilder sortedOutput = new();
+        StringBuilder unsortedInput = new();
+        foreach (int i in arr)
+        {
+            sortedOutput.Append($"[{i}], ");
+            unsortedInput.Append($"[{i}], ");
+        }
+
+        using (StreamWriter w = File.AppendText("log.txt"))
+        {
+            Log($"Sort Type Selected: {selection}",
+                $"{unsortedInput.ToString().Trim(' ', ',')}",
+                $"{sortedOutput.ToString().Trim(' ', ',')}",
+                $"{timeElapsed}", w);
+        }
+
+        using (StreamReader r = File.OpenText("log.txt"))
+        {
+            DumpLog(r);
+        }
     }
 }
